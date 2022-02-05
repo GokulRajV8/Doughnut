@@ -1115,7 +1115,7 @@ AcDbViewportTableRecord
  21
 1
  12
-200.8476132190943
+201.0293757649939
  22
 150.3176254589963
  13
@@ -3481,25 +3481,25 @@ ByLayer
  62
   256
 370
-   13
+   25
 100
 AcDbMText
  10
-30
+20
  20
-256.7
+270
  30
 0
  40
 4
  41
-148.0040026983788
+50.00266846558586
  71
     1
  72
     1
   1
-Gets drawing data and returns whether data is okay\P\PGets pen color and background color of canvas and\Preturns whether data is okay\P\PSaves the canvas as a file\P\PUndoes last change in the drawing\P\PReturns canvas\P\PStarts module
+Exposed Methods :\P\P#1\P\P#2\P\P\P#3\P\P#4\P\P#5\P\P#6
   7
 unicode
 210
@@ -3527,25 +3527,25 @@ ByLayer
  62
   256
 370
-   25
+   13
 100
 AcDbMText
  10
-20
+30
  20
-270
+256.7
  30
 0
  40
 4
  41
-50.00266846558586
+144.0026684655859
  71
     1
  72
     1
   1
-Exposed Methods :\P\P#1\P\P#2\P\P\P#3\P\P#4\P\P#5\P\P#6
+Gets drawing data and draws with it\P\PGets pen color and background color of canvas and\Preturns whether data is okay\P\PSaves the canvas as a file\P\PUndoes last change in the drawing\P\PReturns canvas\P\PStarts module
   7
 unicode
 210

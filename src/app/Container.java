@@ -33,7 +33,7 @@ public class Container extends Application{
         linker.setCore(core);
 
         // welcome prompt
-        System.out.println("Welcome to Spiro!!");
+        System.out.println("Welcome to Spiro 4000 x 4000");
 
         // launching the app
         launch();

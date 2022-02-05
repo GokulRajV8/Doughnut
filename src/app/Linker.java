@@ -11,28 +11,29 @@ public class Linker {
 
     public void setUI(UI ui) {
         this.ui = ui;
+        this.ui.linker = this;
     }
 
     // Links for app modules
     // Core
-    public boolean CoreGetDrawingData(DrawingData drawingData) {
-        return this.core.getDrawingData(drawingData);
+    public boolean CoreSetColors(String penColor, String bgColor) {
+        return this.core.setColors(penColor, bgColor);
     }
 
-    public boolean CoreGetColors(String penColor, String bgColor) {
-        return this.core.getColors(penColor, bgColor);
-    }
-
-    public void CoreSave() throws java.io.IOException{
-        this.core.save();
-    }
-
-    public void undo() {
-        this.core.undo();
+    public void CoreSetDrawingData(DrawingData drawingData) {
+        this.core.setDrawingData(drawingData);
     }
 
     public java.awt.image.BufferedImage CoreGetCanvas() {
         return this.core.getCanvas();
+    }
+
+    public void CoreSave() {
+        this.core.save();
+    }
+
+    public void CoreUndo() {
+        this.core.undo();
     }
 
     // UI
