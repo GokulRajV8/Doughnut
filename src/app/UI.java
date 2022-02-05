@@ -20,7 +20,7 @@ public class UI {
         this.mainScene.start();
 
         // setting up stage and displaying
-        mainStage.setTitle("Spiro");
+        mainStage.setTitle("Doughnut");
         mainStage.setResizable(false);
         mainStage.setScene(this.mainScene.scene);
         mainStage.show();

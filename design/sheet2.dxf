@@ -1115,7 +1115,7 @@ AcDbViewportTableRecord
  21
 1
  12
-201.0293757649939
+201.2111383108935
  22
 150.3176254589963
  13
@@ -2291,7 +2291,7 @@ AcDbSymbolTableRecord
 100
 AcDbTextStyleTableRecord
   2
-unicode
+standard
  70
     0
  40
@@ -2305,7 +2305,7 @@ unicode
  42
 1
   3
-unicode
+standard
   4
 
   0
@@ -2319,7 +2319,7 @@ AcDbSymbolTableRecord
 100
 AcDbTextStyleTableRecord
   2
-standard
+unicode
  70
     0
  40
@@ -2333,7 +2333,7 @@ standard
  42
 1
   3
-standard
+unicode
   4
 
   0
@@ -3347,52 +3347,6 @@ ByLayer
 100
 AcDbMText
  10
-200
- 20
-290.3
- 30
-0
- 40
-1.5
- 41
-17.37499968199698
- 71
-    6
- 72
-    1
-  1
-App name : Spiro
-  7
-standard
-210
-0
-220
-0
-230
-1
- 50
-0
- 73
-    2
- 44
-1
-  0
-MTEXT
-  5
-60
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbMText
- 10
 200.01
  20
 280.3
@@ -3425,7 +3379,7 @@ standard
   0
 MTEXT
   5
-61
+60
 100
 AcDbEntity
   8
@@ -3471,7 +3425,7 @@ standard
   0
 MTEXT
   5
-62
+61
 100
 AcDbEntity
   8
@@ -3517,7 +3471,7 @@ unicode
   0
 MTEXT
   5
-63
+62
 100
 AcDbEntity
   8
@@ -3548,6 +3502,52 @@ AcDbMText
 Gets drawing data and draws with it\P\PGets pen color and background color of canvas and\Preturns whether data is okay\P\PSaves the canvas as a file\P\PUndoes last change in the drawing\P\PReturns canvas\P\PStarts module
   7
 unicode
+210
+0
+220
+0
+230
+1
+ 50
+0
+ 73
+    2
+ 44
+1
+  0
+MTEXT
+  5
+63
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbMText
+ 10
+200
+ 20
+290.3
+ 30
+0
+ 40
+1.5
+ 41
+21.54166666666718
+ 71
+    6
+ 72
+    1
+  1
+App name : Doughnut
+  7
+standard
 210
 0
 220
