@@ -1115,7 +1115,7 @@ AcDbViewportTableRecord
  21
 1
  12
-201.2111383108935
+200.8476132190943
  22
 150.3176254589963
  13
@@ -2291,7 +2291,7 @@ AcDbSymbolTableRecord
 100
 AcDbTextStyleTableRecord
   2
-standard
+unicode
  70
     0
  40
@@ -2305,7 +2305,7 @@ standard
  42
 1
   3
-standard
+unicode
   4
 
   0
@@ -2319,7 +2319,7 @@ AcDbSymbolTableRecord
 100
 AcDbTextStyleTableRecord
   2
-unicode
+standard
  70
     0
  40
@@ -2333,7 +2333,7 @@ unicode
  42
 1
   3
-unicode
+standard
   4
 
   0
@@ -2741,33 +2741,33 @@ SOLID
  72
     1
  10
-35.5
+44
  20
-25
+15.5
  11
-32.5
+41
  21
-24.5
+15
  72
     1
  10
-32.5
+41
  20
-24.5
+15
  11
-35.5
+44
  21
-24
+14.5
  72
     1
  10
-35.5
+44
  20
-24
+14.5
  11
-35.5
+44
  21
-25
+15.5
  97
     0
  75
@@ -3045,52 +3045,6 @@ ByLayer
 100
 AcDbMText
  10
-21.3
- 20
-25.5
- 30
-0
- 40
-1.5
- 41
-6.333333333333333
- 71
-    1
- 72
-    1
-  1
-Module
-  7
-standard
-210
-0
-220
-0
-230
-1
- 50
-0
- 73
-    2
- 44
-1
-  0
-MTEXT
-  5
-57
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbMText
- 10
 20.9
  20
 15.5
@@ -3123,217 +3077,7 @@ standard
   0
 MTEXT
   5
-58
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbMText
- 10
-40.8
- 20
-25.5
- 30
-0
- 40
-1.5
- 41
-41.41666804286223
- 71
-    1
- 72
-    1
-  1
-Used by (Container if points to nothing)
-  7
-standard
-210
-0
-220
-0
-230
-1
- 50
-0
- 73
-    2
- 44
-1
-  0
-MTEXT
-  5
-59
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbMText
- 10
-43.9
- 20
-17.5
- 30
-0
- 40
-5
- 41
-1.111111111111111
- 71
-    1
- 72
-    1
-  1
-1
-  7
-standard
-210
-0
-220
-0
-230
-1
- 50
-0
- 73
-    2
- 44
-1
-  0
-CIRCLE
-  5
-5A
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbCircle
- 10
-45
- 20
-15
- 40
-4
-  0
-LINE
-  5
-5B
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbLine
- 10
-35.5
- 20
-24.5
- 11
-37.5
- 21
-24.5
-  0
-LINE
-  5
-5C
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbLine
- 10
-35.5
- 20
-25
- 11
-32.5
- 21
-24.5
-  0
-LINE
-  5
-5D
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbLine
- 10
-32.5
- 20
-24.5
- 11
-35.5
- 21
-24
-  0
-LINE
-  5
-5E
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbLine
- 10
-35.5
- 20
-25
- 11
-35.5
- 21
-24
-  0
-MTEXT
-  5
-5F
+57
 100
 AcDbEntity
   8
@@ -3379,53 +3123,7 @@ standard
   0
 MTEXT
   5
-60
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbMText
- 10
-50.9
- 20
-15.5
- 30
-0
- 40
-1.5
- 41
-32.04166820952864
- 71
-    1
- 72
-    1
-  1
-Connector for different sheets
-  7
-standard
-210
-0
-220
-0
-230
-1
- 50
-0
- 73
-    2
- 44
-1
-  0
-MTEXT
-  5
-61
+58
 100
 AcDbEntity
   8
@@ -3471,7 +3169,7 @@ unicode
   0
 MTEXT
   5
-62
+59
 100
 AcDbEntity
   8
@@ -3517,7 +3215,7 @@ unicode
   0
 MTEXT
   5
-63
+5A
 100
 AcDbEntity
   8
@@ -3546,6 +3244,354 @@ AcDbMText
     1
   1
 App name : Doughnut
+  7
+standard
+210
+0
+220
+0
+230
+1
+ 50
+0
+ 73
+    2
+ 44
+1
+  0
+MTEXT
+  5
+5B
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbMText
+ 10
+10
+ 20
+290.3
+ 30
+0
+ 40
+1.5
+ 41
+15.58333333333363
+ 71
+    4
+ 72
+    1
+  1
+Container : App
+  7
+standard
+210
+0
+220
+0
+230
+1
+ 50
+0
+ 73
+    2
+ 44
+1
+  0
+MTEXT
+  5
+5C
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbMText
+ 10
+21.3
+ 20
+25.5
+ 30
+0
+ 40
+1.5
+ 41
+23.49166650000021
+ 71
+    1
+ 72
+    1
+  1
+Module (Container if *)
+  7
+standard
+210
+0
+220
+0
+230
+1
+ 50
+0
+ 73
+    2
+ 44
+1
+  0
+MTEXT
+  5
+5D
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbMText
+ 10
+51.9
+ 20
+27.5
+ 30
+0
+ 40
+5
+ 41
+1.111111111111111
+ 71
+    1
+ 72
+    1
+  1
+1
+  7
+standard
+210
+0
+220
+0
+230
+1
+ 50
+0
+ 73
+    2
+ 44
+1
+  0
+CIRCLE
+  5
+5E
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbCircle
+ 10
+53
+ 20
+25
+ 40
+4
+  0
+MTEXT
+  5
+5F
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbMText
+ 10
+58.9
+ 20
+25.5
+ 30
+0
+ 40
+1.5
+ 41
+32.04166820952864
+ 71
+    1
+ 72
+    1
+  1
+Connector for different sheets
+  7
+standard
+210
+0
+220
+0
+230
+1
+ 50
+0
+ 73
+    2
+ 44
+1
+  0
+LINE
+  5
+60
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbLine
+ 10
+44
+ 20
+15
+ 11
+46
+ 21
+15
+  0
+LINE
+  5
+61
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbLine
+ 10
+44
+ 20
+15.5
+ 11
+41
+ 21
+15
+  0
+LINE
+  5
+62
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbLine
+ 10
+41
+ 20
+15
+ 11
+44
+ 21
+14.5
+  0
+LINE
+  5
+63
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbLine
+ 10
+44
+ 20
+15.5
+ 11
+44
+ 21
+14.5
+  0
+MTEXT
+  5
+64
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbMText
+ 10
+49.3
+ 20
+16
+ 30
+0
+ 40
+1.5
+ 41
+49.87500214762634
+ 71
+    1
+ 72
+    1
+  1
+Used by (Outside container if points to nothing)
   7
 standard
 210

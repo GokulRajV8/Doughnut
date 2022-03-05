@@ -2,7 +2,9 @@ package app;
 
 import java.awt.image.BufferedImage;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -13,13 +15,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 
-public class MainScene extends Thread {
-    @SuppressWarnings("unused")
-    private UI hostUI;
+public class MainScene {
+    // scene
+    public Scene scene;
     // buffered image for canvas
     private BufferedImage canvasImage;
-    // Scene and elements
-    public Scene scene;
+    // scene elements
     private ImageView canvas;
     private Label status;
     private TextField bgColor;
@@ -37,25 +38,10 @@ public class MainScene extends Thread {
     private Button setDrawingData;
     private Button undo;
     private Button save;
-    // flags for status
-    private boolean isColorsDataOkay;
-    private boolean isDrawingDataOkay;
-    private boolean isCanvasUpdated;
-    private boolean isBusy;
-    // flag for scene state
-    public boolean isActive;
 
-    public MainScene(UI hostUI) throws java.io.IOException{
-        this.hostUI = hostUI;
-
-        // activating scene and setting flags
-        this.isActive = true;
-        this.isColorsDataOkay = true;
-        this.isDrawingDataOkay = true;
-        this.isBusy = false;
-
+    public MainScene(UI hostUI) throws java.io.IOException {
         // creating loader using FXML file and creating scene
-        javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(new java.io.File("src/app/MainScene.fxml").toURI().toURL());
+        FXMLLoader loader = new FXMLLoader(new java.io.File("src/app/MainScene.fxml").toURI().toURL());
         this.scene = new Scene(loader.load(), 1003, 802, true);
 
         // image for canvas
@@ -85,162 +71,123 @@ public class MainScene extends Thread {
         this.undo = (Button)loader.getNamespace().get("undo");
         this.save = (Button)loader.getNamespace().get("save");
 
-        // creation of events
+        // creating events
         // click event for set colors button
         setColors.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                // starting in a new thread to avoid UI update suspension
-                new Thread() {
-                    @Override
-                    public void run() {
-                        if(!isBusy) {
-                            isBusy = true;
-                            isColorsDataOkay = hostUI.linker.CoreSetColors(penColor.getText(), bgColor.getText());
-                            if(isColorsDataOkay) {
-                                // updating canvas image
-                                canvasImage.getGraphics().drawImage(hostUI.linker.CoreGetCanvas().getScaledInstance(800, 800, java.awt.Image.SCALE_SMOOTH), 0, 0, null);
-                                isCanvasUpdated = true;
-                            }
-                            isBusy = false;
-                        }
-                    }
-                }.start();
+                // setting colors
+                if(hostUI.getContainer().CoreSetColors(penColor.getText(), bgColor.getText())) {
+                    // updating canvas image
+                    canvasImage.getGraphics().drawImage(hostUI.getContainer().CoreGetCanvas().getScaledInstance(800, 800, java.awt.Image.SCALE_SMOOTH), 0, 0, null);
+
+                    // scene update - updating canvas and setting status as OK
+                    updateScene("Canvas : UPDATE");
+                    updateScene("Status : SET : OK");
+                }
+                else {
+                    // scene update - setting status as ERROR
+                    updateScene("Status : SET : ERROR");
+                }
             }
         });
+
         // click event for setting drawing data
         setDrawingData.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                // starting in a new thread to avoid UI update suspension
-                new Thread() {
-                    @Override
-                    public void run() {
-                        if(!isBusy) {
-                            isBusy = true;
+                // validation
+                try{
+                    // to catch exceptions
+                    Integer.parseInt(staticWheelRadius.getText());
+                    Integer.parseInt(movingWheelRadius.getText());
+                    Integer.parseInt(movingWheelHoleRadius.getText());
+                    Integer.parseInt(movingWheelHoleAngle.getText());
+                    Integer.parseInt(startAngle.getText());
+                    Integer.parseInt(endAngle.getText());
+                } catch (Exception exception) {
+                    // scene update - setting status as ERROR
+                    updateScene("Status : SET : ERROR");
+                    return;
+                }
 
-                            // validation
-                            try{
-                                // to catch exceptions
-                                Integer.parseInt(staticWheelRadius.getText());
-                                Integer.parseInt(movingWheelRadius.getText());
-                                Integer.parseInt(movingWheelHoleRadius.getText());
-                                Integer.parseInt(movingWheelHoleAngle.getText());
-                                Integer.parseInt(startAngle.getText());
-                                Integer.parseInt(endAngle.getText());
-                            } catch (Exception exception) {
-                                isDrawingDataOkay = false;
-                                isBusy = false;
-                                return;
-                            }
+                // setting drawing data and sending to core if data is okay
+                DrawingData drawingData = new DrawingData();
+                drawingData.setAngles(Integer.parseInt(movingWheelHoleAngle.getText()), Integer.parseInt(startAngle.getText()), Integer.parseInt(endAngle.getText()));
+                drawingData.setPenConditions(isOpaque.isSelected(), isThick.isSelected());
+                if(drawingData.setRadii(Integer.parseInt(movingWheelRadius.getText()), Integer.parseInt(staticWheelRadius.getText()),
+                                        Integer.parseInt(movingWheelHoleRadius.getText()), isIn.isSelected())) {
+                    // setting drawing data
+                    hostUI.getContainer().CoreSetDrawingData(drawingData);
 
-                            // setting drawing data
-                            DrawingData drawingData = new DrawingData();
-                            isDrawingDataOkay = drawingData.setRadii(Integer.parseInt(movingWheelRadius.getText()),
-                                                                     Integer.parseInt(staticWheelRadius.getText()),
-                                                                     Integer.parseInt(movingWheelHoleRadius.getText()),
-                                                                     isIn.isSelected());
-                            drawingData.setAngles(Integer.parseInt(movingWheelHoleAngle.getText()),
-                                                  Integer.parseInt(startAngle.getText()),
-                                                  Integer.parseInt(endAngle.getText()));
-                            drawingData.setPenConditions(isOpaque.isSelected(), isThick.isSelected());
+                    // updating canvas image
+                    canvasImage.getGraphics().drawImage(hostUI.getContainer().CoreGetCanvas().getScaledInstance(800, 800, java.awt.Image.SCALE_SMOOTH), 0, 0, null);
 
-                            // sending drawing data to core if data is okay
-                            if(isDrawingDataOkay) {
-                                hostUI.linker.CoreSetDrawingData(drawingData);
-
-                                // updating canvas image
-                                canvasImage.getGraphics().drawImage(hostUI.linker.CoreGetCanvas().getScaledInstance(800, 800, java.awt.Image.SCALE_SMOOTH), 0, 0, null);
-                                isCanvasUpdated = true;
-                            }
-
-                            isBusy = false;
-                        }
-                    }
-                }.start();
+                    // scene update - updating canvas and setting status as OK
+                    updateScene("Canvas : UPDATE");
+                    updateScene("Status : SET : OK");
+                }
+                else {
+                    // scene update - setting status as ERROR
+                    updateScene("Status : SET : ERROR");
+                }
             }
         });
+
         // click event for undoing the last drawing
         undo.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                // starting in a new thread to avoid UI update suspension
-                new Thread() {
-                    @Override
-                    public void run() {
-                        if(!isBusy) {
-                            isBusy = true;
-                            hostUI.linker.CoreUndo();
+                // undoing last drawing
+                hostUI.getContainer().CoreUndo();
 
-                            // updating canvas image
-                            canvasImage.getGraphics().drawImage(hostUI.linker.CoreGetCanvas().getScaledInstance(800, 800, java.awt.Image.SCALE_SMOOTH), 0, 0, null);
-                            isCanvasUpdated = true;
-                            isBusy = false;
-                        }
-                    }
-                }.start();
+                // updating canvas image
+                canvasImage.getGraphics().drawImage(hostUI.getContainer().CoreGetCanvas().getScaledInstance(800, 800, java.awt.Image.SCALE_SMOOTH), 0, 0, null);
+
+                // scene update - updating canvas
+                updateScene("Canvas : UPDATE");
             }
         });
+
         // click event for saving the image
         save.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                // starting in a new thread to avoid UI update suspension
-                new Thread() {
-                    @Override
-                    public void run() {
-                        if(!isBusy) {
-                            isBusy = true;
-                            hostUI.linker.CoreSave();
-                            isBusy = false;
-                        }
-                    }
-                }.start();
+                // saving the canvas image
+                hostUI.getContainer().CoreSave();
             }
         });
     }
 
-    // scene updater
-    @Override
-    public void run() {
-        System.out.println("Main scene update started");
-
-        // polling UI thread until the scene is active
-        while(this.isActive) {
-            // to prevent polling from happening more than 50 times a second
-            try {
-                Thread.sleep((long)(1000.0/50.0));
-            } catch(InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            // UI update as a runnable polled through Platform.runLater
-            javafx.application.Platform.runLater(new Runnable() {
+    // scene updates polled through Platform.runLater
+    private void updateScene(String updateName) {
+        // setting status as OK
+        if(updateName.compareTo("Status : SET : OK") == 0)
+            Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    // update the canvas when update is available
-                    if(isCanvasUpdated) {
-                        canvas.setImage(javafx.embed.swing.SwingFXUtils.toFXImage(canvasImage, null));
-                        isCanvasUpdated = false;
-                    }
-
-                    // update status label based on status
-                    if(isBusy) {
-                        status.setText("Status : BUSY");
-                        status.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.valueOf("#8888ff"), null, null)));
-                    }
-                    else if(!isColorsDataOkay || !isDrawingDataOkay) {
-                        status.setText("Status : ERROR");
-                        status.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.valueOf("#ff8888"), null, null)));
-                    }
-                    else {
-                        status.setText("Status : OK");
-                        status.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.valueOf("#88ff88"), null, null)));
-                    }
+                    status.setText("Status : OK");
+                    status.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.valueOf("#88ff88"), null, null)));
                 }
             });
-        }
 
-        System.out.println("Main scene update stopped");
+        // setting status as ERROR
+        else if(updateName.compareTo("Status : SET : ERROR") == 0)
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    status.setText("Status : ERROR");
+                    status.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Color.valueOf("#ff8888"), null, null)));
+                }
+            });
+
+        // updating canvas
+        else if(updateName.compareTo("Canvas : UPDATE") == 0)
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    canvas.setImage(javafx.embed.swing.SwingFXUtils.toFXImage(canvasImage, null));
+                }
+            });
     }
 }

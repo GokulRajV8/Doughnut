@@ -16,7 +16,7 @@ public class DrawingData {
     private boolean isThick;
 
     public DrawingData() {
-        // default values to prevent no data error while get methods are called
+        // defaulting values to prevent no data error while get methods are called
         this.movingWheelRadius = 10;
         this.staticWheelRadius = 100;
         this.isIn = true;

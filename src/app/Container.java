@@ -1,41 +1,40 @@
 package app;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+public class Container {
+    // modules
+    private Core core;
+    private UI ui;
 
-public class Container extends Application{
-    // App modules
-    public static Core core;
-    public static UI ui;
-    // Linker to connect all app modules
-    public static Linker linker;
-
-    // start method to create JavaFX UI
-    public void start(Stage mainStage) throws Exception {
-        // creating UI
-        ui = new UI();
-
-        // linking UI module to Linker
-        linker.setUI(ui);
-
-        // starting UI module
-        linker.UIStart(mainStage);
+    public Container() {
+        // creating modules
+        core = new Core(this);
+        ui = new UI(this);
     }
 
-    public static void main(String args[]) {
-        // creating linker
-        linker = new Linker();
+    // links for modules
+    // Core
+    public boolean CoreSetColors(String penColor, String bgColor) {
+        return this.core.setColors(penColor, bgColor);
+    }
 
-        // creating Core
-        core = new Core();
+    public void CoreSetDrawingData(DrawingData drawingData) {
+        this.core.setDrawingData(drawingData);
+    }
 
-        // linking Core module to Linker
-        linker.setCore(core);
+    public java.awt.image.BufferedImage CoreGetCanvas() {
+        return this.core.getCanvas();
+    }
 
-        // welcome prompt
-        System.out.println("Welcome to Doughnut 4000 x 4000");
+    public void CoreSave() {
+        this.core.save();
+    }
 
-        // launching the app
-        launch();
+    public void CoreUndo() {
+        this.core.undo();
+    }
+
+    // UI
+    public void UIStart(javafx.stage.Stage mainStage) {
+        this.ui.start(mainStage);
     }
 }

@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.awt.Color;
 
 public class Core {
+    // host container
+    private Container container;
     // drawing data
     private DrawingData drawingData;
     // every point in the drawing is represented by an integer as below :
@@ -16,7 +18,10 @@ public class Core {
     private Color penColor;
     private Color bgColor;
 
-    public Core() {
+    public Core(Container container) {
+        // setting host container
+        this.container = container;
+
         // initialising drawing with 4000x4000 points
         this.drawing = new int[4000][4000];
         this.lastDrawing = new int[4000][4000];
@@ -33,7 +38,10 @@ public class Core {
         this.bgColor = Color.WHITE;
     }
 
-    // sets colors
+    public Container getContainer() {
+        return this.container;
+    }
+
     public boolean setColors(String penColor, String bgColor) {
         // checking string validity
         if(penColor.substring(0, 1).compareTo("#") != 0 || penColor.length() != 7 || bgColor.substring(0, 1).compareTo("#") != 0 || bgColor.length() != 7)
@@ -50,13 +58,8 @@ public class Core {
         }
 
         // setting colors
-        this.penColor = new Color(Integer.valueOf(penColor.substring(1, 3), 16),
-                                  Integer.valueOf(penColor.substring(3, 5), 16),
-                                  Integer.valueOf(penColor.substring(5, 7), 16));
-        this.bgColor = new Color(Integer.valueOf(bgColor.substring(1, 3), 16),
-                                 Integer.valueOf(bgColor.substring(3, 5), 16),
-                                 Integer.valueOf(bgColor.substring(5, 7), 16));
-
+        this.penColor = new Color(Integer.valueOf(penColor.substring(1, 3), 16), Integer.valueOf(penColor.substring(3, 5), 16), Integer.valueOf(penColor.substring(5, 7), 16));
+        this.bgColor = new Color(Integer.valueOf(bgColor.substring(1, 3), 16), Integer.valueOf(bgColor.substring(3, 5), 16), Integer.valueOf(bgColor.substring(5, 7), 16));
         return true;
     }
 
@@ -70,11 +73,11 @@ public class Core {
             for(int j = 0; j < 4000; ++j)
                 lastDrawing[i][j] = drawing[i][j];
 
-        // pen co-ordinates, default to top-left corner
+        // defaulting pen co-ordinates to top-left corner
         int penX = 0;
         int penY = 0;
 
-        // radius of moving wheel orbit, moving wheel angle change and moving wheel hole angle change
+        // setting radius of moving wheel orbit, moving wheel angle change and moving wheel hole angle change
         int movingWheelOrbitRadius = this.drawingData.getStaticWheelRadius();
         // moving wheel moves 0.02 degrees per iteration
         double movingWheelAngleChange = (this.drawingData.getStartAngle() < this.drawingData.getEndAngle()) ? 0.02 : -0.02;
@@ -96,10 +99,8 @@ public class Core {
             double smallWheelHoleAngle = (this.drawingData.getMovingWheelHoleAngle() - ((int)this.drawingData.getMovingWheelHoleAngle() / 360 * 360.0)) * Math.PI / 180.0;
 
             // getting pen co-ordinates
-            penX = 2000 + (int)((double)movingWheelOrbitRadius * Math.cos(smallWheelAngle) +
-                                (double)this.drawingData.getMovingWheelHoleRadius() * Math.cos(smallWheelHoleAngle));
-            penY = 2000 - (int)((double)movingWheelOrbitRadius * Math.sin(smallWheelAngle) +
-                                (double)this.drawingData.getMovingWheelHoleRadius() * Math.sin(smallWheelHoleAngle));
+            penX = 2000 + (int)((double)movingWheelOrbitRadius * Math.cos(smallWheelAngle) + (double)this.drawingData.getMovingWheelHoleRadius() * Math.cos(smallWheelHoleAngle));
+            penY = 2000 - (int)((double)movingWheelOrbitRadius * Math.sin(smallWheelAngle) + (double)this.drawingData.getMovingWheelHoleRadius() * Math.sin(smallWheelHoleAngle));
 
             // ignoring right and bottom edges
             if(penX == 4000 || penY == 4000) {
@@ -111,7 +112,6 @@ public class Core {
                 // multiplied by moving wheel angle change to work in both the directions
                 if(movingWheelPosition * movingWheelAngleChange > this.drawingData.getEndAngle() * movingWheelAngleChange)
                     break;
-                
                 continue;
             }
 
@@ -148,8 +148,8 @@ public class Core {
         int[][] tempdrawing = new int[4000][4000];
         for(int i = 0; i < 4000; ++i)
             for(int j = 0; j < 4000; ++j) {
-                if(this.drawing[i][j] / 1000000000 == 1) {
-                    tempdrawing[i][j] = this.drawing[i][j] % 1000000000;
+                if(this.drawing[i][j] > 999999999) {
+                    tempdrawing[i][j] = this.drawing[i][j] - 1000000000;
                 }
                 else {
                     tempdrawing[i][j] = this.bgColor.getRed() * 1000000 + this.bgColor.getGreen() * 1000 + this.bgColor.getBlue();
