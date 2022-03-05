@@ -1,6 +1,6 @@
 # Doughnut
 
- ## -- Closed --
+## -- Closed --
 
 Java FX application to generate patterns made using Spirograph on a computer
 
@@ -12,7 +12,7 @@ Java FX application to generate patterns made using Spirograph on a computer
 - Undo reverts the last change in the drawing (does not undo color changes)
 - Saves the canvas as output.png
 
- ## Used
+## Used
 
 Modular application with modules and containers
 
