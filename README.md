@@ -6,10 +6,10 @@ Java FX application to generate patterns made using Spirograph on a computer
 
 ## To run the application
 1. Include current folder jars and Java FX jars to CLASSPATH
-2. Build the application go to app/build/libs folder
+2. Build the application and go to app/build/libs folder
 3. Execute the below command :
 
-java --module-path %JAVAFX_HOME%/lib --add-modules javafx.controls,javafx.fxml root.Main
+java --module-path "C:/Program Files/Java/javafx-sdk-17.0.1/lib" --add-modules javafx.controls,javafx.fxml root.Main
 
 ## Features
 
