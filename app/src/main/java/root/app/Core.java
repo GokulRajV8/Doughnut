@@ -1,4 +1,4 @@
-package app;
+package root.app;
 
 import java.awt.image.BufferedImage;
 import java.awt.Color;
@@ -178,7 +178,7 @@ public class Core {
     // saves the complete drawing as a .png file
     public void save() {
         try {
-            javax.imageio.ImageIO.write(this.getCanvas(), "png", new java.io.File("output.png"));
+            javax.imageio.ImageIO.write(this.getCanvas(), "png", new java.io.File("../resources/main/output.png"));
         }
         catch(java.io.IOException e) {
             e.printStackTrace();

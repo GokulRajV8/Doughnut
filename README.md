@@ -4,6 +4,13 @@
 
 Java FX application to generate patterns made using Spirograph on a computer
 
+## To run the application
+1. Include current folder jars and Java FX jars to CLASSPATH
+2. Build the application go to app/build/libs folder
+3. Execute the below command :
+
+java --module-path %JAVAFX_HOME%/lib --add-modules javafx.controls,javafx.fxml root.Main
+
 ## Features
 
 - Application is 1000x800 pixels in size and cannot be resized (atleast 1080p monitor is required)

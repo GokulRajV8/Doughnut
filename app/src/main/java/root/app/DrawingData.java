@@ -1,4 +1,4 @@
-package app;
+package root.app;
 
 public class DrawingData {
     // wheels data
