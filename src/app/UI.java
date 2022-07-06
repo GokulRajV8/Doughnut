@@ -1,4 +1,4 @@
-package root.app;
+package app;
 
 import javafx.event.EventHandler;
 import javafx.stage.Stage;

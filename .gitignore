@@ -1,12 +1,3 @@
-# Ignore Gradle project-specific cache directory and wrappers
 .gradle
-gradle
-gradlew
-gradlew.bat
-
-# Ignore Gradle build directory and bin directory
-build
-bin
-
-# Ignore VS code setup
 .vscode
+bin

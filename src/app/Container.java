@@ -1,4 +1,4 @@
-package root.app;
+package app;
 
 public class Container {
     // modules

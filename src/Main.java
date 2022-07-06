@@ -1,6 +1,4 @@
-package root;
-
-import root.app.Container;
+import app.Container;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
