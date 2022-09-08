@@ -19,6 +19,9 @@ dependencies {
     implementation name : "javafx-sdk-17.0.1/lib/javafx-swt"
 }
 
+// Setting bin as build directory
+buildDir = "bin"
+
 sourceSets {
     main {
         java {
@@ -27,15 +30,8 @@ sourceSets {
             // Compiled Java classes should be in this directory
             destinationDirectory.set(file("bin/main"))
         }
-        resources {
-            // Source directory for resource files
-            srcDirs "resources"
-        }
     }
 }
-
-// Setting bin as build directory
-buildDir = "bin"
 
 // To delete unnecessary build folders
 compileJava.doLast {
