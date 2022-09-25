@@ -41,7 +41,7 @@ public class MainScene {
 
     public MainScene(UI hostUI) throws java.io.IOException {
         // creating loader using FXML file and creating scene
-        FXMLLoader loader = new FXMLLoader(new java.io.File("../../resources/MainScene.fxml").toURI().toURL());
+        FXMLLoader loader = new FXMLLoader(new java.io.File("../resources/MainScene.fxml").toURI().toURL());
         this.scene = new Scene(loader.load(), 1003, 802, true);
 
         // image for canvas

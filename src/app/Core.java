@@ -178,7 +178,7 @@ public class Core {
     // saves the complete drawing as a .png file
     public void save() {
         try {
-            javax.imageio.ImageIO.write(this.getCanvas(), "png", new java.io.File("../../resources/output.png"));
+            javax.imageio.ImageIO.write(this.getCanvas(), "png", new java.io.File("../resources/output.png"));
         }
         catch(java.io.IOException e) {
             e.printStackTrace();
